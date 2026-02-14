@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Weather Intelligence Dashboard</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/weather_CSS.css' %}">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="{% static 'jquery/Weather_JS.js' %}"></script>
+</head>
+
+<body>
+
+<center><h2 style="color:maroon;font-weight:bold;border: 6px solid transparent;border-image: linear-gradient(45deg, #ff004c, #ffcc00, #00eaff, #b300ff) 1;" class="glass">🌦 Weather Intelligence Dashboard</h2></center>
+<div id="top-section">
+
+      {% include "map_work.html" %}
+
+
+  <!-- RIGHT: PREDICTIONS -->
+  <div id="prediction-panel"  >
+
+     <div style="opacity:0.9" class="predict-card">
+         <center><p class="cent">{{ format_date }}</p></center>
+         <center ><B><span id="selected-state" >📍 {{ result.state }},</span><span id="selected-district">{{ result.district }}</span></B></center>
+         <center><p><b>Timezone:</b> <span>{{ location_info.timezone }}</span></p></center>
+         <center><p style="margin-top:-25px;"><b>Lat:</b><span>{{ location_info.latitude }}</span><span style="font-size:100px">{{result.emote}}</span><span> <b>Lon:</b> <span>{{ location_info.longitude }}</span></span></p></center>
+         <center><p><b><span style="font-size:20px;" class="goback">{{ result.weather }}</span></b></p></center>
+         <p style="font-size:50px;margin-top:-5px"><span style="font-size:40px;">🌡️</span><span>{{ form_data.temperature|default:" 0 "}}℃</span> <span ><span style="font-size:40px">💧</span>{{form_data.humidity|default:" 0 "}}%</span></p>
+         <div class="aqi-bar-container" style="margin-top:-25px;">
+        <label>US AQI (1–6): <b id="us-aqi-value">{{ result.us_aqi }}</b></label>
+        <div class="aqi-bar" id="us-aqi-bar">
+            <div class="aqi-indicator" id="us-aqi-indicator"></div>
+        </div>
+        <p class="aqi-label" id="us-aqi-label"> </p>
+    </div>
+          <div class="aqi-bar-container">
+        <label>UK AQI (1–10): <b id="uk-aqi-value">{{ result.uk_aqi }}</b></label>
+        <div class="aqi-bar" id="uk-aqi-bar">
+            <div class="aqi-indicator" id="uk-aqi-indicator"></div>
+        </div>
+        <p class="aqi-label" id="uk-aqi-label"> </p>
+    </div>
+
+         <p><span style="font-size:80px;margin-top:-20px">{{result.emoji}}</span></p>
+         <div style="position:absolute;margin-top:-130px;margin-left:150px;"><div> <b>Storm Alert:</b> <span > {{ result.storm }}</span></div><br>
+            <div><b>Travel Advisory: </b>{{ result.travel }}</div><br>
+             <div><b>UV Safety:</b> <span >{{ result.uv_msg }}</span></div>
+             </div>
+
+
+    </div>
+
+
+
+
+
+  </div>
+
+</div>
+
+<div style="margin-top:-5%" >
+<form method="post">
+{% csrf_token %}
+
+<input type="hidden" id="region" name="region" value="{{ selected_state }}">
+<input type="hidden" id="location_name" name="location_name" value="{{ selected_district }}">
+
+    <center><h3 style="color:maroon;font-weight:bold;border: 6px solid transparent;border-image: linear-gradient(45deg, #ff004c, #ffcc00, #00eaff, #b300ff) 1;" class="glass">Weather and AQ Inputs</h3>
+   <span id="radio">
+  <label>
+  <input type="radio"  name="mode" value="manual"
+         {% if mode == "manual" %}checked{% endif %}>
+  Manual
+</label>
+
+<label style="margin-left:30px;">
+  <input type="radio"  name="mode" value="live"
+         {% if mode == "live" %}checked{% endif %}>
+  Live (Real-time API)
+</label> </span></center>
+<div  style="opacity:0.9" class="card wi">
+
+   <span class="flex-item"> <label class="sticker">Temperature </label>
+<input type="number" class="values" step="0.1" id="temp" name="temperature"
+       value="{{ form_data.temperature }}" placeholder="Temperature (°C)" required></span>
+<span class="flex-item"><label class="sticker">Feels like celsius </label>
+<input type="number" class="values" step="0.1" name="feels_like_celsius"
+       value="{{ form_data.feels_like_celsius }}" placeholder="Feels Like (°C)" required></span>
+   <span class="flex-item"> <label class="sticker">Humidity</label>
+<input type="number" class="values" name="humidity"
+       value="{{ form_data.humidity }}" placeholder="Humidity (%)" required></span>
+ <span class="flex-item"><label class="sticker">cloud</label>
+<input type="number" class="values" name="cloud"
+       value="{{ form_data.cloud }}" placeholder="Cloud (%)" required></span>
+<span class="flex-item"><label class="sticker">visibility</label>
+<input type="number" class="values" step="0.1" name="visibility"
+       value="{{ form_data.visibility }}" placeholder="Visibility (km)" required></span>
+<span class="flex-item"><label class="sticker">UV</label>
+<input type="number" class="values" name="uv"
+       value="{{ form_data.uv }}" placeholder="UV Index" required></span>
+<span class="flex-item"><label class="sticker">Wind</label>
+<input type="number" class="values" step="0.1" name="wind"
+       value="{{ form_data.wind }}" placeholder="Wind Speed (kph)" required></span>
+<span class="flex-item"><label class="sticker">Gust</label>
+<input type="number" class="values" step="0.1" name="gust"
+       value="{{ form_data.gust }}" placeholder="Gust Speed (kph)" required></span>
+<span class="flex-item"><label class="sticker">Pressure</label>
+<input type="number" class="values" step="0.1" name="pressure"
+       value="{{ form_data.pressure }}" placeholder="Pressure (mb)" required></span>
+<span class="flex-item"><label class="sticker">Precip</label>
+<input type="number" class="values" step="0.1" name="precip"
+       value="{{ form_data.precip }}" placeholder="Rainfall (mm)" required></span>
+
+  <span class="flex-item">  <label class="sticker">PM2.5</label>
+<input type="number" class="values" step="0.1" name="pm25"
+       value="{{ form_data.pm25 }}" placeholder="PM2.5" required></span>
+<span class="flex-item"><label class="sticker">PM10</label>
+<input type="number" class="values" step="0.1" name="pm10"
+       value="{{ form_data.pm10 }}" placeholder="PM10" required></span>
+<span class="flex-item"><label class="sticker">NO2</label>
+<input type="number" class="values" step="0.1" name="no2"
+       value="{{ form_data.no2 }}" placeholder="NO₂" required></span>
+<span class="flex-item"><label class="sticker">SO2</label>
+<input type="number" class="values" step="0.1" name="so2"
+       value="{{ form_data.so2 }}" placeholder="SO₂" required></span>
+<span class="flex-item"><label class="sticker">Ozone</label>
+<input type="number" class="values" step="0.1" name="o3"
+       value="{{ form_data.o3 }}" placeholder="Ozone" required></span>
+<span class="flex-item"><label class="sticker">CO2</label>
+<input type="number" class="values" step="0.1" name="co"
+       value="{{ form_data.co }}" placeholder="CO2" required></span>
+
+
+</div>
+
+    <button type="reset" id="reset-btn" style="display:none">reset</button>
+    <button type="submit" id="predict-btn" style="display:none">Predict</button>
+    <button type="submit" id="auto-submit" style="display:none;"></button>
+
+
+</form>
+
+</div>
+{% if error %}
+<div class="card" style="color:red;">{{ error }}</div>
+{% endif %}
+
+</body>
+</html>

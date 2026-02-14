@@ -1,0 +1,184 @@
+body {
+background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fad0c4);
+}
+/*Map section*/
+.hidden { display: none; }
+#top-section {
+ width:100%;
+ height:700;
+ display:flex;
+ }
+#india-map{
+margin:0px 0px 0px 10px;
+
+ }
+ #map-wrapper {
+  width: 50%;
+  position: relative;
+
+}
+
+#india-map,
+#state-map {
+  position: relative;
+  width: 100%;
+  height:100%;
+   opacity: 0.8;
+}
+
+#india-img,
+#state-img {
+  width: 100%;
+  height: 700px;
+  border-radius:10%;
+}
+.map-label {
+  position: absolute;
+  background:white;
+  padding: 3px 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.map-label:hover{
+background:orange;
+}
+.district.selected {
+  background: #ff5722;
+  color: white;
+}
+
+
+.sticker{
+margin-left:5px;
+}
+.values{
+padding:5px;
+margin:10px 10px;
+}
+
+.aqi-bar-container {
+  margin-bottom: 15px;
+}
+
+.aqi-bar {
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(to right,
+        #00e400,   /* Good        - Green */
+        #ffff00,   /* Moderate    - Yellow */
+        #ff7e00,   /* Unhealthy   - Orange */
+        #ff0000,   /* Very Bad    - Red */
+        #8f3f97,   /* Hazardous   - Purple */
+        #7e0023    /* Deadly      - Maroon */
+    );
+  border-radius: 13px;
+  position: relative;
+  margin-top: 5px;
+}
+
+.aqi-indicator {
+  width: 10px;
+  height: 16px;
+  background: white;
+  border-radius: 4px;
+  position: absolute;
+  top: -5px;
+  transform: translateX(-50%);
+  transition: left 0.4s ease;
+  border: 2px solid #222;
+}
+
+.aqi-label {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #ccc;
+}
+/*Prediction display*/
+#prediction-panel{
+width:48%;
+position:relative;
+height:40%;
+}
+
+.predict-card {
+    background: linear-gradient(135deg, #dbeafe, #f0f9ff);
+   padding: 35px;
+  margin: 10px 5px 100px 50px;
+  border-radius:10%;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  font-family: 'Montserrat', sans-serif;
+  height:610px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  margin: 30px 50px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+
+/*  Weather input */
+
+.wi{
+display:flex;
+flex-wrap:wrap;
+}
+.flex-item{
+width:25%;
+ border: 1px solid #333;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ box-sizing: border-box;
+}
+
+#mode{
+padding: 15px;
+margin: 30px 50px;
+}
+
+/*Responive */
+@media (max-width: 750px){
+#top-section,.wi{
+flex-direction:column;
+}
+.flex-item{
+width:90%;
+}
+
+#prediction-panel,#map-wrapper{
+width:100%;
+}
+
+#india-img,
+#state-img{
+padding-bottom:75px;
+}
+}
+
+/*Effects*/
+.glass {
+  background: rgba(255, 165, 0, 0.30);
+   padding:10px;
+   margin-top:0;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.25);
+  width: fit-content;
+}
+
+
+/*Buttons effects*/
+button {
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+}
+
+#back-to-india {
+  position: absolute;
+  top: 1px;
+  left: 10px;
+  border-radius:100px 0px 0px 0px;
+}

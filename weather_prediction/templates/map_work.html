@@ -1,0 +1,180 @@
+{% load static %}
+<div id="map-wrapper">
+<div id="india-map">
+  <img src="{% static 'images/india_map.jpeg' %}" id="india-img">
+<div class="map-label state" data-state="Madhya Pradesh"
+         style="top:42%; left:30%;"
+         >
+      Madhya Pradesh
+    </div>
+    <div class="map-label state" data-state="Tamil Nadu"
+         style="top:75%; left:34%;"
+         >
+      Tamil Nadu
+    </div>
+     <div class="map-label state" data-state="Uttar Pradesh"
+         style="top:32%; left:41%;"
+         >
+      Uttar Pradesh
+    </div>
+    <div class="map-label state" data-state="Orissa"
+         style="top:47%; left:53%;"
+         >
+      Orissa
+    </div>
+    <div class="map-label state" data-state="Rajasthan"
+         style="top:32%; left:20%;"
+         >
+     Rajasthan
+    </div>
+     <div class="map-label state" data-state="Gujarat"
+         style="top:40%; left:14%;"
+         >
+     Gujarat
+    </div>
+    <div class="map-label state" data-state="Himachal Pradesh"
+         style="top:16%; left:35%;"
+         >
+      Himachal Pradesh
+    </div>
+    <div class="map-label state" data-state="Chhattisgarh"
+         style="top:45%; left:44%;transform:rotate(-45deg)"
+         >
+      Chhattisgarh
+    </div>
+     <div class="map-label state" data-state="Jammu and Kashmir"
+         style="top:8%; left:24%;transform:rotate(45deg)"
+         >
+      Jammu and Kashmir
+    </div>
+     <div class="map-label state" data-state="Daman and Diu"
+         style="top:48%; left:19%;"
+         >
+      Daman and Diu
+    </div>
+    <div class="map-label state" data-state="Dadra and Nagar Haveli"
+         style="top:51%; left:21%;"
+         >
+      Dadra and Nagar Haveli
+    </div>
+    <div class="map-label state" data-state="Andhra Pradesh"
+         style="top:60%; left:37%;transform:rotate(-35deg)"
+         >
+      Andhra Pradesh
+    </div>
+     <div class="map-label state" data-state="Jharkhand"
+         style="top:40%; left:55%;"
+         >
+      Jharkhand
+    </div>
+     <div class="map-label state" data-state="Bihar"
+         style="top:35%; left:58%;"
+         >
+      Bihar
+    </div>
+     <div class="map-label state" data-state="West Bengal"
+         style="top:42%; left:64%;"
+         >
+      West Bengal
+    </div>
+    <div class="map-label state" data-state="Maharashtra"
+         style="top:53%; left:23%;"
+         >
+      Maharashtra
+    </div>
+    <div class="map-label state" data-state="Haryana"
+         style="top:24%; left:28%;transform:rotate(-70deg)"
+         >
+      Haryana
+    </div>
+    <div class="map-label state" data-state="Chandigarh"
+         style="top:19%; left:29%;"
+         >
+      Chandigarh
+    </div>
+    <div class="map-label state" data-state="Goa"
+         style="top:63%; left:18%;"
+         >
+      Goa
+    </div>
+     <div class="map-label state" data-state="Andaman and Nicobar Islands"
+         style="top:75%; left:60%;"
+         >
+      Andaman and Nicobar Islands
+    </div>
+    <div class="map-label state" data-state="Arunachal Pradesh"
+         style="top:26%; left:76%;"
+         >
+      Arunachal Pradesh
+    </div>
+     <div class="map-label state" data-state="Assam"
+         style="top:31%; left:78%;"
+         >
+      Assam
+    </div>
+    <div class="map-label state" data-state="Puducherry"
+         style="top:77%; left:41%;"
+         >
+      Puducherry
+    </div>
+     <div class="map-label state" data-state="Kerala"
+         style="top:80%; left:25%;"
+         >
+      Kerala
+    </div>
+    <div class="map-label state" data-state="Mizoram"
+         style="top:42%; left:82%;"
+         >
+      Mizoram
+    </div>
+     <div class="map-label state" data-state="Manipur"
+         style="top:36%; left:84%;"
+         >
+      Manipur
+    </div>
+    <div class="map-label state" data-state="Nagaland"
+         style="top:32%; left:85%;"
+         >
+      Nagaland
+    </div>
+
+     <div class="map-label state" data-state="Tripura"
+         style="top:39%; left:72%;"
+         >
+      Tripura
+    </div>
+    <div class="map-label state" data-state="Karnataka"
+         style="top:68%; left:25%;"
+         >
+      Karnataka
+    </div>
+    <div class="map-label state" data-state="Uttarakhand"
+         style="top:22%; left:38%;"
+         >
+      Uttarakhand
+    </div>
+    <div class="map-label state" data-state="Lakshadweep"
+         style="top:75%; left:8%;"
+         >
+      Lakshadweep
+    </div>
+    <div class="map-label state" data-state="Punjab"
+         style="top:21%; left:24%;"
+         >
+      Punjab
+    </div>
+    <div class="map-label state" data-state="Delhi"
+         style="top:26%; left:34%;"
+         >
+      Delhi
+    </div>
+
+</div>
+
+<div id="state-map" class="hidden">
+  <img id="state-img">
+  <!-- district labels -->
+{% include "district_map_label.html" %}
+     <button id="back-to-india">⬅ Back</button>
+</div>
+</div>
