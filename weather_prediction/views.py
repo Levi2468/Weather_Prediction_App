@@ -66,7 +66,7 @@ def dashboard(request):
         district = request.POST.get("location_name", "").strip()
 
         if not state or not district:
-            return render(request, "dashboard.html", {
+            return render(request, "index.html", {
                 "states": states,
                 "mode": mode,
                 "state_map": state_map,
@@ -171,7 +171,7 @@ def dashboard(request):
         }
 
 
-    return render(request, "dashboard.html", {
+    return render(request, "index.html", {
         "states": states,
         "mode": mode,
         "state_map": state_map,
